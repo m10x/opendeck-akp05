@@ -61,9 +61,10 @@ colors = [
     [0,   0,   255],  # knob 3
     [255, 255, 0  ],  # knob 4
 ]
+```
 
 When OpenDeck is being terminated, a disconnect signal is sent to the device, which results in a hardcoded red for all knobs.
-```
+
 ## Adding new devices
 
 Read [this wiki page](https://github.com/4ndv/opendeck-akp03/wiki/Adding-support-for-new-devices) for more information.
