@@ -11,6 +11,7 @@ use tokio::signal::unix::{SignalKind, signal};
 
 mod device;
 mod inputs;
+mod led_config;
 mod mappings;
 mod watcher;
 

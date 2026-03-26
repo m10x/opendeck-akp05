@@ -9,6 +9,7 @@ use tokio_util::sync::CancellationToken;
 
 use crate::{
     DEVICES, TOKENS,
+    led_config,
     mappings::{
         COL_COUNT, CandidateDevice, DEVICE_TYPE, ENCODER_COUNT, KEY_COUNT, Kind, ROW_COUNT,
     },
@@ -25,6 +26,14 @@ pub async fn device_task(candidate: CandidateDevice, token: CancellationToken) {
         device.set_brightness(50).await?;
         device.clear_all_button_images().await?;
         device.flush().await?;
+
+        let led = led_config::load();
+        log::info!("Applying LED config: {:?}", led);
+        if led.mode == led_config::LedMode::Static {
+            device.set_led_brightness(led.brightness).await?;
+            let colors = led.resolved_colors();
+            device.set_led_colors(&colors).await?;
+        }
 
         Ok(device)
     }()

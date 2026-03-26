@@ -35,6 +35,35 @@ Requires OpenDeck 2.5.0 or newer
 3. Download [udev rules](./40-opendeck-akp03.rules) and install them by copying into `/etc/udev/rules.d/` and running `sudo udevadm control --reload-rules`
 4. Unplug and plug again the device, restart OpenDeck
 
+## Knob LED configuration
+
+By default no LED commands are sent, so the device keeps its own built-in effect.
+
+To configure the knob LEDs, create `~/.config/opendeck-akp05/leds.toml`.
+(Windows: `%APPDATA%\opendeck-akp05\leds.toml`, macOS: `~/Library/Application Support/opendeck-akp05/leds.toml`)
+
+All LEDs the same color:
+
+```toml
+mode = "static"
+brightness = 100      # 0-100
+color = [255, 0, 128] # RGB
+```
+
+Each LED a different color:
+
+```toml
+mode = "static"
+brightness = 100
+colors = [
+    [255, 0,   0  ],  # knob 1
+    [0,   255, 0  ],  # knob 2
+    [0,   0,   255],  # knob 3
+    [255, 255, 0  ],  # knob 4
+]
+
+When OpenDeck is being terminated, a disconnect signal is sent to the device, which results in a hardcoded red for all knobs.
+```
 ## Adding new devices
 
 Read [this wiki page](https://github.com/4ndv/opendeck-akp03/wiki/Adding-support-for-new-devices) for more information.
