@@ -45,21 +45,23 @@ To configure the knob LEDs, create `~/.config/opendeck-akp05/leds.toml`.
 All LEDs the same color:
 
 ```toml
-mode = "static"
-brightness = 100      # 0-100
-color = [255, 0, 128] # RGB
+brightness = 100 # 0-100
+
+[mode.Static]
+colors = [[255, 0, 128]] # RGB
 ```
 
 Each LED a different color:
 
 ```toml
-mode = "static"
-brightness = 100
+brightness = 100 # 0-100
+
+[mode.Static]
 colors = [
-    [255, 0,   0  ],  # knob 1
-    [0,   255, 0  ],  # knob 2
-    [0,   0,   255],  # knob 3
-    [255, 255, 0  ],  # knob 4
+    [255, 0,   0  ], # RGB knob 1
+    [0,   255, 0  ], # RGB knob 2
+    [0,   0,   255], # RGB knob 3
+    [255, 255, 0  ], # RGB knob 4
 ]
 ```
 

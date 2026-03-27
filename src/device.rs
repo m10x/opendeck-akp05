@@ -29,9 +29,8 @@ pub async fn device_task(candidate: CandidateDevice, token: CancellationToken) {
 
         let led = led_config::load();
         log::info!("Applying LED config: {:?}", led);
-        if led.mode == led_config::LedMode::Static {
+        if let Some(led_config::LedMode::Static { colors }) = led.mode {
             device.set_led_brightness(led.brightness).await?;
-            let colors = led.resolved_colors();
             device.set_led_colors(&colors).await?;
         }
 
